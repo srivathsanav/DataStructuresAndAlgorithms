@@ -1,15 +1,14 @@
-package com.caching;
-
 /**
- * Created by srivathsan on 01/04/16.
+ * Created by avsrivathsan on 5/31/2017.
  */
 public class LazyHolder {
 
-    private static LazyHolder getInstance() {
-        return LazyXyz.holder;
+    private static class LazyHolderInstance {
+        private static LazyHolder instance = new LazyHolder();
+
     }
 
-    private static class LazyXyz {
-        private static LazyHolder holder = new LazyHolder();
+    public LazyHolder getInstance() {
+        return LazyHolderInstance.instance;
     }
 }

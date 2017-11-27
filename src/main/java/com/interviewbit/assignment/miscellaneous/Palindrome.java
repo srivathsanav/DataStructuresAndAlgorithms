@@ -1,32 +1,36 @@
-package com.datastructures;
-
 /**
- * Created by srivathsan on 21/02/17.
+ * Created by avsrivathsan on 8/9/2017.
  */
 public class Palindrome {
 
-    public static boolean isPalindrome(String input) {
-        if (input == null) {
-            return true;
-        }
-
-        for (int i =0,  j = input.length() -1; i < input.length()/2 ; ) {
-            if (input.charAt(i) == ' ') {
+    private static boolean isValidPalindrome(String inputString) {
+        for (int i = 0, j = inputString.length() -1 ; i < j; i++, j--) {
+            if (!isAlphaNumeric(inputString.charAt(i))) {
                 i++;
-            } else if (input.charAt(j) == ' ') {
-                j--;
-            } else if (Character.toUpperCase(input.charAt(i)) != Character.toUpperCase(input.charAt(j))) {
-                return false;
-            } else {
-                i++; j--;
+                break;
             }
-
+            if (!isAlphaNumeric(inputString.charAt(j))) {
+                j--;
+                break;
+            }
+            if (inputString.toUpperCase().charAt(i) != inputString.toUpperCase().charAt(j)) {
+                return false;
+            }
         }
         return true;
     }
 
+    private static boolean isAlphaNumeric(char input){
+        if (Character.isAlphabetic(input) || Character.isDigit(input)) {
+            return true;
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
-        System.out.println(isPalindrome("A Santa dog lived as a devil God at NASA"));
+        System.out.println(isValidPalindrome("A man, a plan, a canal, Panama"));
+        System.out.println(isValidPalindrome("Able was I, ere I saw Elba!"));
+        System.out.println(isValidPalindrome("SS"));
+
     }
 }

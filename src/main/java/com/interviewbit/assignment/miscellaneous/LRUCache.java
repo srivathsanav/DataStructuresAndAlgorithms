@@ -1,86 +1,111 @@
-package com.caching;
-
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Created by srivathsan on 31/03/16.
- */
 public class LRUCache {
 
-    private Map<String, CacheEntry> cacheMap = new ConcurrentHashMap<String, CacheEntry>();
+    private int capacity = 0;
+    private Map<Integer, Node> map = new HashMap<>();
+    private Node head, tail;
 
-    private int MAX_LRU_CACHE_SIZE = 10;
 
-
-    private CacheEntry head;
-
-    private CacheEntry tail;
-
-    int currentCacheSize = 0;
-
-    public LRUCache(int MAX_LRU_CACHE_SIZE) {
-        this.MAX_LRU_CACHE_SIZE = MAX_LRU_CACHE_SIZE;
-        head = new CacheEntry("head", null);
-        tail = new CacheEntry("tail", null);
-        head.setNext(tail);
-        head.setPrevious(null);
-        tail.setPrevious(head);
-        tail.setNext(null);
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
     }
 
-    public void put(String key, String value) {
-        //1. Check size
-        //2. If less add
-        //3. If more , check it is for same key, if yes update
-        //4. If more, different key then, purge old entry and add new
+    public int get(int key) {
+        if (map.get(key) == null) {
+            return -1;
+        }
 
-        if (cacheMap.get(key) != null) {
-            //Traverse list and update value
+        Node node = map.get(key);
+
+        if (node != head) {
+            removeFromLinkedList(node);
+            insertItemAtFrontOfLinkedList(node);
+        }
+
+        return head.value;
+    }
+
+    private void removeFromLinkedList(Node node) {
+        if (node == null)
+            return;
+        if (node.next != null)
+            node.next.prev = node.prev;
+        if (node.prev != null)
+            node.prev.next = node.next;
+        if (node == tail)
+            tail = node.prev;
+        if (node == head)
+            head = node.next;
+    }
+
+    private void insertItemAtFrontOfLinkedList(Node node) {
+        if (head == null) {
+            head = node;
+            tail = node;
         } else {
-            if (currentCacheSize >= MAX_LRU_CACHE_SIZE) {
-                // remove existing entry
-            }
-            // add this entry to front
-            //accessed
-        }
-
-    }
-
-
-
-
-    public String get(String key) {
-        CacheEntry entry = cacheMap.get(key);
-        // Mark this entry as accessed
-        return entry.getValue();
-    }
-
-
-    private void accessed(CacheEntry entry) {
-        if (entry != null) {
-            remove(entry);
-            addFront(entry);
+            node.next = head;
+            head.prev = node;
+            head = node;
         }
     }
 
-    private void addFront(CacheEntry entry) {
-        if (entry != null) {
-            CacheEntry next = head.getNext();
-            head.setNext(entry);
-            entry.setPrevious(head);
-            entry.setNext(next);
-            if (next != null) {
-                next.setPrevious(entry);
-            }
-        }
+    private boolean removeKey(int key) {
+        Node node = map.get(key);
+        removeFromLinkedList(node);
+        map.remove(key);
+        return true;
     }
 
-    private void remove(CacheEntry entry) {
-        entry.getPrevious().setNext(entry.getNext());
-        if (entry.getNext() != null) {
-            entry.setPrevious(entry.getPrevious());
+    public void put(int key, int value) {
+        removeKey(key);
+
+        if (isFull() && tail != null) {
+            removeKey(tail.key);
         }
-        entry = null;
+        Node node = new Node(key, value);
+        insertItemAtFrontOfLinkedList(node);
+        map.put(key, node);
+
+    }
+
+    private boolean isFull() {
+        if (this.capacity == map.size()) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        LRUCache cache = new LRUCache( 3 /* capacity */ );
+
+        cache.put(1, 1);
+        //cache.put(2, 2);
+        System.out.println(cache.get(1));       // returns 1
+        cache.put(3, 3);    // evicts key 2
+        System.out.println(cache.get(2));       // returns -1 (not found)
+        cache.put(4, 4);    // evicts key 1
+        System.out.println(cache.get(1));       // returns -1 (not found)
+        System.out.println(cache.get(3));       // returns 3
+        System.out.println(cache.get(4));       // returns 4
+    }
+
+    class Node {
+        Node prev ;
+        Node next;
+        int key;
+        int value;
+
+        public Node() {
+
+        }
+        public Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+            this.next = null;
+            this.prev = null;
+        }
     }
 }
+
