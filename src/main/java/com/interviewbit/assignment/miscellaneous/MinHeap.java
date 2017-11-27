@@ -1,4 +1,4 @@
-package com.datastructures;
+package com.interviewbit.assignment.miscellaneous;
 
 import java.util.Arrays;
 

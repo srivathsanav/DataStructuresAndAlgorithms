@@ -1,4 +1,4 @@
-package threadpool;
+package com.interviewbit.assignment.threadpool;
 
 /**
  * Created by avsrivathsan on 6/2/2017.

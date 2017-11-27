@@ -1,4 +1,4 @@
-package threadpool;
+package com.interviewbit.assignment.threadpool;
 
 import java.util.concurrent.BlockingQueue;
 

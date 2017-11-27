@@ -7,7 +7,7 @@ import java.util.Stack;
  */
 public class ReverseString {
 
-    public static String 6(String a) {
+    public static String reverseString(String a) {
         Stack s = new Stack();
         for (int i = 0; i < a.length(); i++) {
             s.push(a.charAt(i));

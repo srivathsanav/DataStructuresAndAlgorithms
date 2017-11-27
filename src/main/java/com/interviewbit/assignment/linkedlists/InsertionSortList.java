@@ -46,7 +46,7 @@ public class InsertionSortList {
             return  a;
         }
 
-        ListNode dummy = new ListNode(0);
+        ListNode dummy = new ListNode(0, null);
         dummy.next = a;
         ListNode firstLoop = a;
 
@@ -73,10 +73,10 @@ public class InsertionSortList {
 
 
     private static ListNode createLinkedList(List<Integer> numbers) {
-        ListNode previousNode = new ListNode(numbers.get(0));
+        ListNode previousNode = new ListNode(numbers.get(0), null);
         ListNode head = previousNode;
         for (int i =1; i < numbers.size(); i++) {
-            ListNode y = new ListNode(numbers.get(i));
+            ListNode y = new ListNode(numbers.get(i), null);
             previousNode.next = y;
             previousNode = y;
         }

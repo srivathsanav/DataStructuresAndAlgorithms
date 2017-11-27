@@ -54,14 +54,14 @@ public class Merge {
     private static List<ListNode> insertNode (ListNode merged, ListNode head, int val ) {
 
         if (head == null) {
-            head = new ListNode(val);
+            head = new ListNode(val, null);
             head.next = null;
 
         } else {
             while (head.next != null) {
                 head = head.next;
             }
-            head.next = new ListNode(val);
+            head.next = new ListNode(val, null);
         }
         merged = merged == null ? head : merged;
         List<ListNode> result = new ArrayList<ListNode>();
@@ -71,10 +71,10 @@ public class Merge {
     }
 
     private static ListNode createLinkedList(List<Integer> numbers) {
-        ListNode previousNode = new ListNode(numbers.get(0));
+        ListNode previousNode = new ListNode(numbers.get(0), null);
         ListNode head = previousNode;
         for (int i =1; i < numbers.size(); i++) {
-            ListNode y = new ListNode(numbers.get(i));
+            ListNode y = new ListNode(numbers.get(i), null);
             previousNode.next = y;
             previousNode = y;
         }

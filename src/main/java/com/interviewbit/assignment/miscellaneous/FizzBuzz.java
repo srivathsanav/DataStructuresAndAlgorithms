@@ -1,3 +1,4 @@
+package com.interviewbit.assignment.miscellaneous;
 /**
  * Created by avsrivathsan on 6/20/2017.
  */

@@ -14,7 +14,7 @@ public class DeleteDupllicatesLinkedList2 {
 
     public static ListNode deleteDuplicates2(ListNode head) {
         if(head == null) return head;
-        ListNode helper = new ListNode(0);
+        ListNode helper = new ListNode(0, null);
         helper.next = head;
         ListNode pre = helper, cur = head;
         while(cur!=null)
@@ -116,10 +116,10 @@ public class DeleteDupllicatesLinkedList2 {
     }
 
     private static ListNode createLinkedList(List<Integer> numbers) {
-        ListNode previousNode = new ListNode(numbers.get(0));
+        ListNode previousNode = new ListNode(numbers.get(0), null);
         ListNode head = previousNode;
         for (int i =1; i < numbers.size(); i++) {
-            ListNode y = new ListNode(numbers.get(i));
+            ListNode y = new ListNode(numbers.get(i), null);
             previousNode.next = y;
             previousNode = y;
         }

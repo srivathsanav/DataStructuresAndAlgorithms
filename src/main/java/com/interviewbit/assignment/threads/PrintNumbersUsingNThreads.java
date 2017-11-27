@@ -1,4 +1,4 @@
-package com.datastructures;
+package com.interviewbit.assignment.threads;
 
 
 import java.util.concurrent.Semaphore;
@@ -8,7 +8,7 @@ import java.util.concurrent.Semaphore;
    Thread i prints number X, and i+1 prints number X + 1 etc
    When N = M, each thread prints no only once
  */
-package com.interviewbit.assignment.threads;s
+
 public class PrintNumbersUsingNThreads {
 
 

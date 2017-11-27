@@ -11,7 +11,7 @@ import java.util.List;
 public class SwapList {
 
     public static ListNode swapPairs(ListNode a) {
-        ListNode rootnode = new ListNode(0);
+        ListNode rootnode = new ListNode(0, null);
         rootnode.next = a;
 
         ListNode temp = rootnode;
@@ -30,10 +30,10 @@ public class SwapList {
     }
 
     private static ListNode createLinkedList(List<Integer> numbers) {
-        ListNode previousNode = new ListNode(numbers.get(0));
+        ListNode previousNode = new ListNode(numbers.get(0), null);
         ListNode head = previousNode;
         for (int i =1; i < numbers.size(); i++) {
-            ListNode y = new ListNode(numbers.get(i));
+            ListNode y = new ListNode(numbers.get(i), null);
             previousNode.next = y;
             previousNode = y;
         }

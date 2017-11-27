@@ -47,10 +47,10 @@ public class Intersect {
     }
 
     public static void main(String[] args) {
-        ListNode a  =  new ListNode(1);
-        ListNode merge = new ListNode(5);
-        merge.next = new ListNode(2);
-        merge.next.next = new ListNode(3);
+        ListNode a  =  new ListNode(1, null);
+        ListNode merge = new ListNode(5, null);
+        merge.next = new ListNode(2, null);
+        merge.next.next = new ListNode(3, null);
         merge.next.next.next = null;
         ListNode b = merge;
         a.next = merge;

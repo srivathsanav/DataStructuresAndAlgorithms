@@ -68,10 +68,10 @@ public class DeleteDupllicatesLinkedList {
     }
 
     private static ListNode createLinkedList(List<Integer> numbers) {
-        ListNode previousNode = new ListNode(numbers.get(0));
+        ListNode previousNode = new ListNode(numbers.get(0), null);
         ListNode head = previousNode;
         for (int i =0; i < numbers.size(); i++) {
-            ListNode y = new ListNode(numbers.get(i));
+            ListNode y = new ListNode(numbers.get(i), null);
             previousNode.next = y;
             previousNode = y;
         }

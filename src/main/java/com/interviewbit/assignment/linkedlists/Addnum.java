@@ -1,5 +1,6 @@
 package com.interviewbit.assignment.linkedlists;
 
+
 import com.interviewbit.assignment.HackerEarthProblems.ListNode;
 
 import java.util.Arrays;
@@ -41,8 +42,8 @@ public class Addnum {
                     value3 = value3 % 10;
                     carry = 1;
                 } else {
-                    head.next = new ListNode(value3% 10);
-                    head.next.next = new ListNode(value3/10);
+                    head.next = new ListNode(value3% 10, null);
+                    head.next.next = new ListNode(value3/10, null);
                     head.next.next.next = null;
                     return result;
                 }
@@ -50,10 +51,10 @@ public class Addnum {
                 carry = 0;
             }
             if (head == null) {
-                result = new ListNode(value3);
+                result = new ListNode(value3, null);
                 head = result;
             } else {
-                head.next = new ListNode(value3);
+                head.next = new ListNode(value3, null);
                 head = head.next;
             }
             head.next = null;
@@ -65,12 +66,12 @@ public class Addnum {
     }
 
 
-    private static ListNode appendZerosAtEnd ( ListNode a, int howMany) {
+    private static ListNode appendZerosAtEnd (ListNode a, int howMany) {
         while (a != null && a.next != null) {
             a = a.next;
         }
         while (howMany > 0) {
-            ListNode zero = new ListNode(0);
+            ListNode zero = new ListNode(0, null);
             a.next = zero;
             a = a.next;
             howMany--;
@@ -90,10 +91,10 @@ public class Addnum {
         return length;
     }
     private static ListNode createLinkedList(String[] numbers) {
-        ListNode previousNode = new ListNode(Integer.valueOf(numbers[0]));
+        ListNode previousNode = new ListNode(Integer.valueOf(numbers[0]), null);
         ListNode head = previousNode;
         for (int i =1; i < numbers.length; i++) {
-            ListNode y = new ListNode(Integer.valueOf(numbers[i]));
+            ListNode y = new ListNode(Integer.valueOf(numbers[i]), null);
             previousNode.next = y;
             previousNode = y;
         }
@@ -107,10 +108,10 @@ public class Addnum {
     }
 
     private static ListNode createLinkedList(List<Integer> numbers) {
-        ListNode previousNode = new ListNode(numbers.get(0));
+        ListNode previousNode = new ListNode(numbers.get(0), null);
         ListNode head = previousNode;
         for (int i =1; i < numbers.size(); i++) {
-            ListNode y = new ListNode(numbers.get(i));
+            ListNode y = new ListNode(numbers.get(i), null);
             previousNode.next = y;
             previousNode = y;
         }

@@ -29,9 +29,9 @@ public class ReverseLinkedList {
     }
 
     public static void main(String[] args) {
-        ListNode merge = new ListNode(5);
-        merge.next = new ListNode(2);
-        merge.next.next = new ListNode(3);
+        ListNode merge = new ListNode(5, null);
+        merge.next = new ListNode(2, null);
+        merge.next.next = new ListNode(3, null);
         merge.next.next.next = null;
 
         merge = reverseList(merge);

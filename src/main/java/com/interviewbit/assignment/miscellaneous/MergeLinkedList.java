@@ -1,14 +1,18 @@
+package com.interviewbit.assignment.miscellaneous;
+
+import com.interviewbit.assignment.HackerEarthProblems.ListNode;
+
 /**
  * Created by avsrivathsan on 6/9/2017.
  */
 public class MergeLinkedList {
 
-    public Node mergeLinkedList(Node l1, Node l2) {
-        Node dummyHead = new Node(0, null);
-        Node current = dummyHead;
-        Node p1 = l1, p2 = l2;
+    public ListNode mergeLinkedList(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0, null);
+        ListNode current = dummyHead;
+        ListNode p1 = l1, p2 = l2;
         while (p1 != null && p2 != null) {
-            if (p1.data <= p2.data) {
+            if (p1.val <= p2.val) {
                 current.next = p1;
                 p1 = p1.next;
             } else {

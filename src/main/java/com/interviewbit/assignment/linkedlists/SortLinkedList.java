@@ -31,7 +31,7 @@ public class SortLinkedList {
     }
 
     private static ListNode merge(ListNode left, ListNode right) {
-        ListNode dummy = new ListNode(0);
+        ListNode dummy = new ListNode(0, null);
         ListNode current = dummy;
 
         while (left != null && right != null) {
@@ -55,10 +55,10 @@ public class SortLinkedList {
     }
 
     private static ListNode createLinkedList(List<Integer> numbers) {
-        ListNode previousNode = new ListNode(numbers.get(0));
+        ListNode previousNode = new ListNode(numbers.get(0), null);
         ListNode head = previousNode;
         for (int i =1; i < numbers.size(); i++) {
-            ListNode y = new ListNode(numbers.get(i));
+            ListNode y = new ListNode(numbers.get(i), null);
             previousNode.next = y;
             previousNode = y;
         }
